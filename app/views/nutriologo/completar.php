@@ -1,0 +1,2 @@
+<a class='btn' href='index.php?controller=nutriologo&action=dashboard'>← Volver</a><h2>Completa tu registro</h2>
+<form method='POST' action='index.php?controller=nutriologo&action=completarSave' autocomplete='off'><label class='form-label'>Cédula profesional</label><input class='form-control' name='cedula' required autocomplete='off'><label class='form-label'>Teléfono</label><input class='form-control' name='telefono' required autocomplete='off'><button class='btn primary' type='submit'>Guardar</button></form>

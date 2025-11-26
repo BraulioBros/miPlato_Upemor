@@ -1,0 +1,18 @@
+<?php
+require_once __DIR__.'/../models/Nutriente.php';require_once __DIR__.'/../models/Comida.php';require_once __DIR__.'/../models/EstudianteDetalle.php';require_once __DIR__.'/../models/NutriologoDetalle.php';
+class NutriologoController extends Controller{
+public function dashboard(){ $this->requireRole('nutriologo'); $nM=new Nutriente();$cM=new Comida();$eM=new EstudianteDetalle();$stats=['estudiantes'=>count($eM->allWithUsers()),'nutrientes'=>count($nM->all()),'comidas'=>count($cM->all())]; $this->view('dashboard/nutriologo',compact('stats'));}
+public function completar(){ $this->requireRole('nutriologo'); $this->view('nutriologo/completar',[]);}
+public function completarSave(){ $this->requireRole('nutriologo'); $uid=$_SESSION['user']['id']; (new NutriologoDetalle())->upsert($uid,$_POST['cedula'],$_POST['telefono'],1); redirect('nutriologo','dashboard');}
+public function estudiantes(){ $this->requireRole('nutriologo'); $list=(new EstudianteDetalle())->allWithUsers(); $this->view('nutriologo/estudiantes/index',compact('list'));}
+public function estudianteForm(){ $this->requireRole('nutriologo'); $id=$_GET['id']??null; $det=$id?(new EstudianteDetalle())->findByUserId($id):null; $this->view('nutriologo/estudiantes/form',['det'=>$det,'id'=>$id]);}
+public function estudianteSave(){ $this->requireRole('nutriologo'); $id=$_POST['usuario_id']; $fecha_nacimiento=$_POST['fecha_nacimiento']??null; if($fecha_nacimiento){ $min_fecha='1980-01-01'; $max_fecha='2009-12-31'; $timestamp=strtotime($fecha_nacimiento); if($timestamp<strtotime($min_fecha) || $timestamp>strtotime($max_fecha)){ redirect('nutriologo','estudiantes',['error'=>'La fecha de nacimiento debe estar entre 01/01/1980 y 31/12/2009']); } } (new EstudianteDetalle())->upsert($id,$_POST['peso'],$_POST['altura'],$_POST['fecha_nacimiento'],$_POST['sexo'],$_POST['actividad']); redirect('nutriologo','estudiantes');}
+public function nutrientes(){ $this->requireRole('nutriologo'); $list=(new Nutriente())->all(); $this->view('nutriologo/nutrientes/index',compact('list'));}
+public function nutrienteForm(){ $this->requireRole('nutriologo'); $id=$_GET['id']??null; $n=$id?(new Nutriente())->find($id):null; $this->view('nutriologo/nutrientes/form',compact('n'));}
+public function nutrienteSave(){ $this->requireRole('nutriologo'); $m=new Nutriente(); $id_nutriente=$_POST['id_nutriente']??null; $d=['nombre'=>$_POST['nombre'],'calorias_por_gramo'=>$_POST['calorias_por_gramo']??0,'unidad_medida'=>$_POST['unidad_medida'],'tipo'=>$_POST['tipo']]; if($id_nutriente){$m->update($id_nutriente,$d);}else{$m->create($d);} redirect('nutriologo','nutrientes');}
+public function nutrienteDelete(){ $this->requireRole('nutriologo'); (new Nutriente())->delete($_GET['id']); redirect('nutriologo','nutrientes');}
+public function comidas(){ $this->requireRole('nutriologo'); $list=(new Comida())->all(); $this->view('nutriologo/comidas/index',compact('list'));}
+public function comidaForm(){ $this->requireRole('nutriologo'); $id=$_GET['id']??null; $c=$id?(new Comida())->find($id):null; $nutrientes=(new Nutriente())->all(); $this->view('nutriologo/comidas/form',compact('c','nutrientes'));}
+public function comidaSave(){ $this->requireRole('nutriologo'); $m=new Comida(); $id=$_POST['id_comida']??null; $id_nutriente=$_POST['id_nutriente']??''; $d=['nombre'=>$_POST['nombre'],'descripcion'=>$_POST['descripcion'],'calorias_por_100g'=>$_POST['calorias_por_100g'],'id_nutriente'=>empty($id_nutriente)?null:$id_nutriente]; if($id){$m->update($id,$d);}else{$m->create($d);} redirect('nutriologo','comidas');}
+public function comidaDelete(){ $this->requireRole('nutriologo'); (new Comida())->delete($_GET['id']); redirect('nutriologo','comidas');}
+}

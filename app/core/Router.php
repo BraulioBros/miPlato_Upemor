@@ -1,0 +1,2 @@
+<?php
+class Router{public static function dispatch(){$c=$_GET['controller']??'auth';$a=$_GET['action']??'login';$cn=ucfirst($c).'Controller';$f=__DIR__.'/../controllers/'.$cn.'.php';if(!file_exists($f)){http_response_code(404);echo'Controller not found';exit;}require_once $f; if(!class_exists($cn)){echo'Class not found';exit;} $o=new $cn(); if(!method_exists($o,$a)){echo'Action not found';exit;} $o->$a();}}
