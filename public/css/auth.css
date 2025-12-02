@@ -1,0 +1,336 @@
+/**
+ * ============================================================
+ * ESTILOS DE AUTENTICACIÓN - MiPlato Upemor
+ * ============================================================
+ * 
+ * Estilos específicos para páginas de login y registro
+ * Sobrescribe los estilos globales de la aplicación
+ */
+
+/* Reset para página de autenticación */
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+html, body {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  width: 100% !important;
+  height: 100% !important;
+  font-family: 'Poppins', sans-serif !important;
+  background: transparent !important;
+}
+
+body.auth-page {
+  min-height: 100vh !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 20px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Fondo animado */
+body.auth-page::before {
+  content: '' !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(45deg, #10b981, #059669, #047857, #065f46, #10b981) !important;
+  background-size: 400% 400% !important;
+  animation: gradientShift 15s ease infinite !important;
+  z-index: -1 !important;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Ocultar elementos globales en página de autenticación */
+.topbar {
+  display: none !important;
+}
+
+.sidebar {
+  display: none !important;
+}
+
+.app {
+  display: none !important;
+}
+
+.container {
+  display: none !important;
+}
+
+body.auth-page .topbar,
+body.auth-page .sidebar,
+body.auth-page .app,
+body.auth-page .container {
+  display: none !important;
+}
+
+/* Contenedor principal de autenticación */
+.auth-container {
+  width: 100% !important;
+  max-width: 550px !important;
+  background: white !important;
+  border-radius: 30px !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+  overflow: hidden !important;
+  animation: slideUp 0.6s ease-out !important;
+  position: relative !important;
+  z-index: 1000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Encabezado de autenticación */
+.auth-header {
+  padding: 50px 30px !important;
+  text-align: center !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+}
+
+.auth-header h1 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  margin-bottom: 6px !important;
+  letter-spacing: -0.5px !important;
+}
+
+.auth-header p {
+  font-size: 15px !important;
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+}
+
+/* Tabs de navegación */
+.auth-tabs {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0 !important;
+  padding: 0 30px !important;
+  margin-top: 20px !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+}
+
+.tab-button {
+  padding: 14px 20px !important;
+  border: none !important;
+  background: transparent !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #9ca3af !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  border-bottom: 3px solid transparent !important;
+  position: relative !important;
+  margin-bottom: -1px !important;
+}
+
+.tab-button:hover {
+  color: #6b7280 !important;
+}
+
+.tab-button.active {
+  color: #10b981 !important;
+  border-bottom-color: #10b981 !important;
+}
+
+/* Cuerpo del formulario */
+.auth-body {
+  padding: 40px !important;
+}
+
+.form-tab {
+  display: none !important;
+}
+
+.form-tab.active {
+  display: block !important;
+  animation: fadeIn 0.3s ease !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.form-tab h2 {
+  font-size: 24px !important;
+  color: #111827 !important;
+  margin-bottom: 10px !important;
+  font-weight: 700 !important;
+}
+
+.form-tab > p {
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  margin-bottom: 28px !important;
+  line-height: 1.5 !important;
+}
+
+/* Grupos de formulario */
+.auth-body .form-group {
+  margin-bottom: 16px !important;
+}
+
+.auth-body .form-group label {
+  display: block !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  margin-bottom: 6px !important;
+  transition: color 0.3s ease !important;
+}
+
+.auth-body .form-group label i {
+  margin-right: 5px !important;
+  color: #10b981 !important;
+}
+
+/* Inputs */
+.auth-body .form-group input {
+  width: 100% !important;
+  padding: 10px 12px !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 10px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 13px !important;
+  transition: all 0.3s ease !important;
+  background: #f9fafb !important;
+  color: #111827 !important;
+}
+
+.auth-body .form-group input:hover {
+  border-color: #d1d5db !important;
+  background: #ffffff !important;
+}
+
+.auth-body .form-group input:focus {
+  outline: none !important;
+  border-color: #10b981 !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+.auth-body .form-group input::placeholder {
+  color: #9ca3af !important;
+}
+
+.auth-body .form-group small {
+  color: #9ca3af !important;
+  display: block !important;
+  margin-top: 3px !important;
+  font-size: 12px !important;
+}
+
+/* Fila de dos columnas */
+.form-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+}
+
+/* Botones de autenticación */
+.btn-auth {
+  width: 100% !important;
+  padding: 14px 16px !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  font-family: 'Poppins', sans-serif !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: white !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  margin-top: 10px !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+}
+
+.btn-auth:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+}
+
+.btn-auth:active {
+  transform: translateY(0) !important;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-container {
+    max-width: 100% !important;
+    border-radius: 16px !important;
+  }
+
+  .auth-header {
+    padding: 30px 20px !important;
+  }
+
+  .auth-header h1 {
+    font-size: 24px !important;
+  }
+
+  .auth-tabs {
+    padding: 0 20px !important;
+  }
+
+  .auth-body {
+    padding: 25px 20px !important;
+  }
+
+  .form-tab h2 {
+    font-size: 18px !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+}
