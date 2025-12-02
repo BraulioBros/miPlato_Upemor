@@ -1,3 +1,34 @@
+<?php
+/**
+ * REPORTE SEMANAL DE CONSUMO (ESTUDIANTE)
+ * 
+ * Vista interactiva que muestra análisis del consumo semanal.
+ * Permite seleccionar una semana y ver comparativas y gráficas.
+ * 
+ * Variables disponibles:
+ * - $fechaBase - Fecha base para calcular semana (Y-m-d format)
+ * - $desde - Fecha inicial de la semana
+ * - $hasta - Fecha final de la semana
+ * - $objetivo - Objetivo calórico diario
+ * - $totalKcalSemanal - Total de calorías de la semana completa
+ * - $consumosSemanal - Array con todos los consumos de la semana:
+ *   Campos: fecha, comida, gramos, kcal_100g, kcal
+ * - $consumoPorDia - Array con resumen por día:
+ *   Campos: dia, kcal
+ * - $nutrientesPorSemana - Array con consumo de nutrientes de la semana
+ * 
+ * Gráficas incluidas:
+ * - Barras: Consumo por día de la semana
+ * - Doughnut: Distribución de nutrientes de la semana
+ * 
+ * Características:
+ * - Selector de fecha para elegir semana
+ * - Tarjetas con estadísticas (total, promedio, objetivo)
+ * - Tabla detallada de todos los consumos
+ * - Charts.js para visualización comparativa
+ */
+?>
+
 <div class='page-head'>
   <h2>Reporte Semanal</h2>
   <div class='page-actions'>
@@ -54,6 +85,7 @@
           <th>Gramos</th>
           <th>kcal/100g</th>
           <th>kcal</th>
+          <th>Nutriente</th>
         </tr>
       </thead>
       <tbody>
@@ -64,12 +96,13 @@
             <td><?= number_format($consumo['gramos'], 1) ?></td>
             <td><?= number_format($consumo['kcal_100g'], 0) ?></td>
             <td><strong><?= number_format($consumo['kcal'], 0) ?></strong></td>
+            <td><?= htmlspecialchars($consumo['nutriente']) ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
       <tfoot>
         <tr>
-          <td colspan='4' style='text-align: right; font-weight: bold;'>TOTAL SEMANAL:</td>
+          <td colspan='5' style='text-align: right; font-weight: bold;'>TOTAL SEMANAL:</td>
           <td><strong><?= number_format($totalKcalSemanal, 0) ?> kcal</strong></td>
         </tr>
       </tfoot>

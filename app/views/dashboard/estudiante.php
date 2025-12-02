@@ -1,23 +1,53 @@
+<?php
+/**
+ * DASHBOARD ESTUDIANTE
+ * 
+ * Panel de control principal del estudiante.
+ * Muestra:
+ * - Objetivo calórico diario (calculado con Harris-Benedict)
+ * - Consumo actual del día
+ * - Feedback motivacional personalizado
+ * - Acciones rápidas (registrar consumo, reportes)
+ * - Tabla de consumo reciente
+ * - Gráficas de tendencia (14 días)
+ * 
+ * Variables disponibles (desde EstudianteController::dashboard()):
+ * - $objetivo - Calorías objetivo diario
+ * - $k - Calorías consumidas hoy
+ * - $feedback - Mensaje motivacional personalizado
+ * - $list - Listado de consumos del usuario
+ * - $diario - Resumen diario (últimos 14 días)
+ * - $semanal - Resumen semanal (últimas 8 semanas)
+ */
+?>
+
 <h1>Panel Estudiante</h1>
+
+<!-- ========== TARJETAS DE ESTADÍSTICAS ========== -->
 <div class='student-stats'>
-  <div class='stat-card'>
-    <div class='stat-icon'>🎯</div>
-    <div class='stat-info'>
-      <p class='stat-label'>Objetivo Diario</p>
-      <p class='stat-value'><?= $objetivo ?> kcal</p>
+    <!-- Objetivo calórico diario -->
+    <div class='stat-card'>
+        <div class='stat-icon'>🎯</div>
+        <div class='stat-info'>
+            <p class='stat-label'>Objetivo Diario</p>
+            <p class='stat-value'><?= $objetivo ?> kcal</p>
+        </div>
     </div>
-  </div>
-  <div class='stat-card'>
-    <div class='stat-icon'>🍽️</div>
-    <div class='stat-info'>
-      <p class='stat-label'>Consumido Hoy</p>
-      <p class='stat-value'><?= round($k) ?> kcal</p>
+    
+    <!-- Consumo del día -->
+    <div class='stat-card'>
+        <div class='stat-icon'>🍽️</div>
+        <div class='stat-info'>
+            <p class='stat-label'>Consumido Hoy</p>
+            <p class='stat-value'><?= round($k) ?> kcal</p>
+        </div>
     </div>
-  </div>
 </div>
 
+<!-- Feedback motivacional generado por el controlador -->
 <p class='feedback-text'><em><?= htmlspecialchars($feedback) ?></em></p>
 
+<!-- ========== ACCIONES RÁPIDAS ========== -->
 <div class='action-cards'>
   <a href='index.php?controller=estudiante&action=consumoAdd' class='action-card'>
     <div class='action-icon'>➕</div>

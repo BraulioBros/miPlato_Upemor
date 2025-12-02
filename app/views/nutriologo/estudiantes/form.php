@@ -1,4 +1,38 @@
-<a class='btn' href='index.php?controller=nutriologo&action=estudiantes'>← Volver</a><h2>Datos del estudiante #<?= htmlspecialchars($id) ?></h2>
+<?php
+/**
+ * FORMULARIO DE DATOS ANTROPOMÉTRICOS (NUTRIÓLOGO)
+ * 
+ * Formulario para que el nutriólogo edite/registre datos del estudiante.
+ * Estos datos son usados para cálculos de TMB y objetivo calórico.
+ * 
+ * Variables disponibles:
+ * - $id - ID del usuario estudiante
+ * - $det - Datos antropométricos actuales
+ *   Campos: peso, altura, fecha_nacimiento, sexo, actividad
+ * 
+ * Campos del formulario:
+ * - peso - Peso en kg (decimal, obligatorio)
+ * - altura - Altura en cm (decimal, obligatorio)
+ * - fecha_nacimiento - Fecha nacimiento (date, obligatorio)
+ * - sexo - Sexo: M (Masculino) o F (Femenino) (select, obligatorio)
+ * - actividad - Factor de actividad física (1.2 a 1.9, obligatorio)
+ *   1.2 = Sedentario
+ *   1.375 = Ligera actividad
+ *   1.55 = Actividad moderada
+ *   1.725 = Actividad alta
+ *   1.9 = Muy alta actividad
+ * 
+ * Cálculo de TMB:
+ * Se usa fórmula de Harris-Benedict con estos datos
+ * 
+ * Acción: Guarda datos en EstudianteDetalle (estudianteSave)
+ */
+?>
+
+<a class='btn' href='index.php?controller=nutriologo&action=estudiantes'>← Volver</a>
+<h2>Datos del estudiante #<?= htmlspecialchars($id) ?></h2>
+
+<!-- ========== FORMULARIO DE DATOS ANTROPOMÉTRICOS ========== -->
 <form method='POST' action='index.php?controller=nutriologo&action=estudianteSave'><input type='hidden' name='usuario_id' value='<?= htmlspecialchars($id) ?>'>
 <label class='form-label'>Peso (kg)</label><input class='form-control' type='number' step='0.1' name='peso' value='<?= $det['peso'] ?? '' ?>' required>
 <label class='form-label'>Altura (cm)</label><input class='form-control' type='number' step='0.1' name='altura' value='<?= $det['altura'] ?? '' ?>' required>

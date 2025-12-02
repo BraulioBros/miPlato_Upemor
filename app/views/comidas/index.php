@@ -1,3 +1,21 @@
+<?php
+/**
+ * LISTADO DE COMIDAS (VISTA PÚBLICA)
+ * 
+ * Muestra tabla con comidas disponibles para consulta pública.
+ * Permite editar y eliminar comidas.
+ * 
+ * Variables disponibles:
+ * - $comidas - Array con comidas
+ *   Campos: id_comida, id, nombre, nutriente, calorias_por_100g
+ * 
+ * Acciones disponibles:
+ * - Editar comida
+ * - Eliminar comida (con confirmación)
+ */
+?>
+
+<!-- ========== TABLA DE COMIDAS ========== -->
 <table>
   <thead>
     <tr>

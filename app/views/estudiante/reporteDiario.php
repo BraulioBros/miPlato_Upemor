@@ -1,3 +1,32 @@
+<?php
+/**
+ * REPORTE DIARIO DE CONSUMO (ESTUDIANTE)
+ * 
+ * Vista interactiva que muestra análisis detallado del consumo diario.
+ * Incluye selector de fecha, tabla de consumos, y gráficas Chart.js.
+ * 
+ * Variables disponibles:
+ * - $fechaSeleccionada - Fecha del reporte (Y-m-d format)
+ * - $objetivo - Objetivo calórico diario del estudiante
+ * - $totalKcal - Total de calorías consumidas en el día
+ * - $consumosDiarios - Array con detalles de consumo:
+ *   Campos: comida, gramos, kcal_100g, nutriente, kcal
+ * - $diario - Array últimos 14 días para gráfica de línea
+ *   Campos: fecha, kcal
+ * - $nutrientesPorDia - Array con consumo por tipo de nutriente
+ * 
+ * Gráficas incluidas:
+ * - Línea: Consumo últimos 14 días
+ * - Doughnut: Distribución de nutrientes del día
+ * 
+ * Características:
+ * - Selector de fecha interactivo
+ * - Cálculo de diferencia vs objetivo (con color dinámico)
+ * - Tabla detallada con resumen
+ * - Charts.js para visualización
+ */
+?>
+
 <div class='page-head'>
   <h2>Reporte Diario</h2>
   <div class='page-actions'>

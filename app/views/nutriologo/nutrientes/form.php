@@ -1,4 +1,29 @@
-<a class='btn' href='index.php?controller=nutriologo&action=nutrientes'>← Volver</a><h2><?= isset($n)?'Editar':'Nuevo' ?> nutriente</h2>
+<?php
+/**
+ * FORMULARIO DE NUTRIENTES (NUTRIÓLOGO)
+ * 
+ * Formulario para crear o editar nutrientes.
+ * Los nutriólogos pueden gestionar su base de nutrientes.
+ * 
+ * Variables disponibles:
+ * - $n - Datos del nutriente (null si es creación)
+ *   Campos: id_nutriente, nombre, calorias_por_gramo, unidad_medida, tipo
+ * 
+ * Tipos de nutrientes:
+ * - macronutriente (carbohidratos, proteínas, grasas)
+ * - micronutriente (minerales, vitaminas)
+ * - vitamina
+ * - mineral
+ * - fibra
+ * 
+ * Acción: Guarda nuevo nutriente o edita existente (nutrienteSave)
+ */
+?>
+
+<a class='btn' href='index.php?controller=nutriologo&action=nutrientes'>← Volver</a>
+<h2><?= isset($n)?'Editar':'Nuevo' ?> nutriente</h2>
+
+<!-- ========== FORMULARIO DE NUTRIENTE ========== -->
 <form method='POST' action='index.php?controller=nutriologo&action=nutrienteSave'><?php if(isset($n)): ?><input type='hidden' name='id_nutriente' value='<?= $n['id_nutriente'] ?>'><?php endif; ?>
 <label class='form-label'>Nombre</label><input class='form-control' name='nombre' value='<?= $n['nombre'] ?? '' ?>' required>
 <label class='form-label'>Calorías por gramo</label><input class='form-control' type='number' step='0.01' name='calorias_por_gramo' value='<?= isset($n) ? $n['calorias_por_gramo'] : '' ?>' required>
